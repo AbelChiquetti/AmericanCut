@@ -318,11 +318,6 @@ section {
   flex: 1;
 }
 
-.apresentacao-image img {
-  border-radius: 10px;
-  box-shadow: var(--shadow);
-}
-
 /* ========== BENEFÍCIOS SECTION ========== */
 .beneficios-grid {
   display: grid;
