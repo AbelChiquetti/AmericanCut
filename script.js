@@ -1,25 +1,20 @@
-// Wait for the DOM to be fully loaded
 document.addEventListener("DOMContentLoaded", function () {
-  // Variables
   const header = document.getElementById("header");
   const mobileMenuToggle = document.querySelector(".mobile-menu-toggle");
   const navLinks = document.querySelector(".nav-links");
   const allLinks = document.querySelectorAll('a[href^="#"]');
   const tooltips = document.querySelectorAll(".info-tooltip");
 
-  // Function to toggle mobile menu
   function toggleMobileMenu() {
     mobileMenuToggle.classList.toggle("active");
     navLinks.classList.toggle("active");
   }
 
-  // Function to close mobile menu
   function closeMobileMenu() {
     mobileMenuToggle.classList.remove("active");
     navLinks.classList.remove("active");
   }
 
-  // Function to handle header scroll effect
   function handleHeaderScroll() {
     if (window.scrollY > 50) {
       header.classList.add("scrolled");
@@ -28,7 +23,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Function for smooth scrolling
   function smoothScroll(e) {
     e.preventDefault();
 
@@ -40,23 +34,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (!targetElement) return;
 
-    // Close mobile menu if open
     closeMobileMenu();
 
-    // Calculate header height
     const headerHeight = header.offsetHeight;
 
-    // Calculate target position
     const targetPosition = targetElement.offsetTop - headerHeight;
 
-    // Smooth scroll
     window.scrollTo({
       top: targetPosition,
       behavior: "smooth",
     });
   }
 
-  // Function to handle animations on scroll
   function animateOnScroll() {
     const animatedElements = document.querySelectorAll(
       ".beneficio-card, .funcionalidade-item, .plano-card, .contato-item"
@@ -77,7 +66,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Function to initialize animations
   function initAnimations() {
     const animatedElements = document.querySelectorAll(
       ".beneficio-card, .funcionalidade-item, .plano-card, .contato-item"
@@ -89,50 +77,36 @@ document.addEventListener("DOMContentLoaded", function () {
       element.style.transition = "all 0.6s ease";
     });
 
-    // Trigger initial animation check
     animateOnScroll();
   }
 
-  // Initialize animations after a short delay
   setTimeout(initAnimations, 100);
 
-  // Event Listeners
-
-  // Mobile menu toggle click event
   mobileMenuToggle.addEventListener("click", toggleMobileMenu);
 
-  // Smooth scrolling for all anchor links
   allLinks.forEach((link) => {
     link.addEventListener("click", smoothScroll);
   });
 
-  // Header scroll effect
   window.addEventListener("scroll", handleHeaderScroll);
 
-  // Animation on scroll
   window.addEventListener("scroll", animateOnScroll);
 
-  // Perform initial scroll check
   handleHeaderScroll();
 
-  // Handle form submission (if you have a form)
   const contactForm = document.getElementById("contact-form");
   if (contactForm) {
     contactForm.addEventListener("submit", function (e) {
       e.preventDefault();
 
-      // You would typically send the form data to a server here
-      // For now, let's just show a success message
       alert("Mensagem enviada com sucesso! Entraremos em contato em breve.");
       this.reset();
     });
   }
 
-  // Handle WhatsApp tracking clicks
   const whatsappButtons = document.querySelectorAll('a[href^="https://wa.me"]');
   whatsappButtons.forEach((button) => {
     button.addEventListener("click", function () {
-      // Track event with Google Analytics (if available)
       if (typeof gtag === "function") {
         gtag("event", "click", {
           event_category: "WhatsApp",
@@ -140,7 +114,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
       }
 
-      // Track event with Facebook Pixel (if available)
       if (typeof fbq === "function") {
         fbq("track", "Contact");
       }
