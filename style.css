@@ -975,6 +975,11 @@ footer {
   .video-item {
     min-width: 100%;
   }
+  
+  .reginaldo img {
+    max-width: 330px;
+    height: auto;
+  }
 }
 
 @media (max-width: 480px) {
